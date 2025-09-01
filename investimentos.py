@@ -122,7 +122,7 @@ def calcula_juros(df):
 
 df2 = calcula_juros(df)
 
-## confirmar corretamente o calculo
+## Adicionar o valor de mercado aqui, lógica da ANBIMA
 df2["taxa_total_periodo"] = df2["Taxa_media_mensal"] * df2["Dias_para_proximo"]
 df2["juros"] = df2["vl_invest_acum"] * (df2["taxa_total_periodo"])
 print(df2)
