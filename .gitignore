@@ -2,6 +2,6 @@
 .env
 dados/
 Faturas/
-pyspark/
+calc/
 artifacts/
 __pycache__/
