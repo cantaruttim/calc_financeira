@@ -1,6 +1,7 @@
 import pandas as pd
 from datetime import datetime
 from dotenv import load_dotenv
+from dados.despesas.despesas_fixas import DespesasFixas
 import os
 
 load_dotenv()
@@ -15,6 +16,13 @@ descontos = {
     '02-2026': 350,
     '05-2026': 1695,
 }
+
+## Instanciando a classe ja preenchida em dados para o valor das despesas fixas
+despFixas = DespesasFixas()
+print(f"""
+    O valor das despesas fixas é de: R$ {despFixas.total_despesas()}
+""")
+
 
 receita_bolha = os.getenv("RECEITA_BOLHA")
 gastos_bolha = os.getenv("GASTOS_BOLHA")
@@ -222,4 +230,4 @@ def calcular_sobra(df3, salario_total):
     return df3
 
 df3 = calcular_sobra(df3, salario_total)
-print(df3)
+# print(df3)
