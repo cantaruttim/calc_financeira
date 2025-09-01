@@ -214,9 +214,12 @@ def outras_receitas(df3, receitas_extras):
 
 df3 = outras_receitas(df3, receitas_extras)
 
-if (df3["Perc_Gastos"] < 0.0).any():
-    df3["sobra"] = (salario_total - df3["Valor com desconto"]) + df3["outras_receitas"]
-else:
-    df3["sobra"] = 0.0
+def calcular_sobra(df3, salario_total):
+    if (df3["Perc_Gastos"] < 0.0).any():
+        df3["sobra"] = (salario_total - df3["Valor com desconto"]) + df3["outras_receitas"]
+    else:
+        df3["sobra"] = 0.0
+    return df3
 
+df3 = calcular_sobra(df3, salario_total)
 print(df3)
