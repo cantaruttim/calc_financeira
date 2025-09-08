@@ -230,4 +230,4 @@ def calcular_sobra(df3, salario_total):
     return df3
 
 df3 = calcular_sobra(df3, salario_total)
-# print(df3)
+print(df3)
