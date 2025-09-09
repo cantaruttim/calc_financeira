@@ -8,8 +8,8 @@ def tras_dono_cartao(gf, donos):
     df22 = gf.copy()
 
     # Remove a coluna 'Vigência' se existir
-    if 'Vigência' in df22.columns:
-        df22 = df22.drop(columns='Vigência')
+    # if 'Vigência' in df22.columns:
+    #     df22 = df22.drop(columns='Vigência')
 
     # Se df22 tem MultiIndex nas colunas, achatamos:
     if isinstance(df22.columns, pd.MultiIndex):
@@ -29,5 +29,12 @@ def tras_dono_cartao(gf, donos):
 
 
 # Chamada da função corrigida
-gf = tras_dono_cartao(gf, donos[["Cartão", "Dono"]])
-print(gf)
+df = tras_dono_cartao(gf, donos[["Cartão", "Dono"]])
+
+# Certifique-se de que 'Vigência' é datetime
+df['Vigência'] = pd.to_datetime(df['Vigência'], errors='coerce')
+
+# Cria uma coluna de Ano-Mês da próxima parcela
+df['AnoMes'] = df['Vigência'] + pd.DateOffset(months=1)
+df['AnoMes'] = df['AnoMes'].dt.to_period('M')
+
